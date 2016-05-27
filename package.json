@@ -1,0 +1,28 @@
+{
+  "name": "ponoadventure-api",
+  "version": "1.0.0",
+  "description": "REST API",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.15.1",
+    "express": "^4.13.4",
+    "gulp": "^3.9.1",
+    "gulp-nodemon": "^2.0.7",
+    "mongoose": "^4.4.19",
+    "morgan": "^1.7.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daveai/ponoadventure-api.git"
+  },
+  "author": "Dave",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/daveai/ponoadventure-api/issues"
+  },
+  "homepage": "https://github.com/daveai/ponoadventure-api#readme"
+}
