@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin - Bootstrap Admin Template</title>
+    <title>Pono Aventure Admin</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -34,7 +34,7 @@
 
 </head>
 
-<body>
+<body ng-controller="main">
 
     <div id="wrapper">
 
@@ -45,24 +45,25 @@
 
         </div>
         <!-- /#page-wrapper -->
-
+         <div class="progress_gif_holder ng-hide" ng-show="isWait">
+            {{isWait}}
+        </div>
     </div>
     <!-- /#wrapper -->
-
+   
     <!-- jQuery -->
     <script type="text/javascript" src="/vendor/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="/vendor/angular/angular.js"></script>
     <script type="text/javascript" src="/vendor/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script type="text/javascript" src="/vendor/angular-resource/angular-resource.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="/js/bootstrap.min.js"></script>
-
-    <!-- Morris Charts JavaScript -->
-    <script src="/js/plugins/morris/raphael.min.js"></script>
-    <script src="/js/plugins/morris/morris.min.js"></script>
-    <script src="/js/plugins/morris/morris-data.js"></script>
+    <script src="/js/bootstrap.min.js"></script>    
     
     <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="controllers/admin/main.js"></script>
+    <script type="text/javascript" src="services/admin/UserService.js"></script>
+    <script type="text/javascript" src="/controllers/admin/user/UserController.js"></script>  
 
 </body>
 
