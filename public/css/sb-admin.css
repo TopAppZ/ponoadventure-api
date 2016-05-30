@@ -225,3 +225,11 @@ ul.alert-dropdown {
 .panel-yellow > a:hover {
     color: #df8a13;
 }
+.progress_gif_holder {
+    height: 100%;
+    width: 100%;
+    background: black;
+    position: fixed;
+    top: 0;
+    opacity: 0.5;   
+}

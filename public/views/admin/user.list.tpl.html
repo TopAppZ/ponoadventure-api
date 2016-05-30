@@ -1,0 +1,44 @@
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                Users <small>List of users</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li class="active">
+                    <i class="fa fa-dashboard"></i> Users
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <h2>Registred users</h2>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Full name</th>
+                            <th>email</th>
+                            <th>Contact Number</th>
+                            <th>Options</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="user in users">
+                            <td>{{user.full_name}}</td>
+                            <td>{{user.email}}</td>
+                            <td>{{user.contact_number}}</td>
+                            <td align="center">                                
+                                <button ng-click="editUser(user._id)" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-pencil"></span></button>                                
+                                <button class="btn btn-sm btn-default"><span class="glyphicon glyphicon-remove"></span></button>
+                            </td>
+                        </tr>                        
+                    </tbody>
+                </table>
+            </div>
+        </div>                    
+    </div>
+    <!-- /.row -->
+</div>

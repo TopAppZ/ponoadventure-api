@@ -8,10 +8,10 @@ module.exports = {
             contact_number:req.body.contact_number
         });
         user.save(function(err){
-            if(err){
-                res.send(err);
+            if(!err){
+                res.json(user);
             } else {
-                res.json({"status":1, "msg":"success", "user":user});
+                res.status(400).send({ error: err });
             }
         })
     },
@@ -19,5 +19,25 @@ module.exports = {
          User.find({},function(err,users){
               res.json(users);
          })
+    },
+    get:function(req,res){
+        var query = User.findOne({ '_id': req.params.id });
+        query.exec(function(err,user){
+            if(!err){
+                res.json(user);
+            } else {
+                res.status(404).send();
+            }
+        })
+    },
+    update:function(req,res){
+        User.findOneAndUpdate({_id:req.params.id}, req.body, {new: true}, function (err, user) {
+            if(!err){
+                res.json(user);
+            } else {
+                res.status(400).send({ error: err });
+            }
+            
+        });
     }
 }
