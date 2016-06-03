@@ -1,3 +1,5 @@
+var multer  = require('multer')
+var upload = multer({ dest: 'uploads/' })
 module.exports = function(express, app){
     ///////////////////////////////////////////////////////API router/////////////////////////////////////////////////////
     var apiRouter = express.Router();
@@ -24,6 +26,24 @@ module.exports = function(express, app){
             var userAPIController = require('./APIControllers/UserAPIController');
             userAPIController.update( req, res );
         })    
+    apiRouter.route('/adventure')
+        .post(function(req,res){
+            var adventureAPIController = require("./APIControllers/AdventureAPIController");
+            adventureAPIController.save(req,res);
+        })
+        .get(function(req,res){
+            var adventureAPIController = require("./APIControllers/AdventureAPIController");
+            adventureAPIController.list(req,res);
+        })
+    apiRouter.route('/category')
+        .get(function(req, res){
+            var categoryAPIController = require("./APIControllers/CategoryAPIController");
+            categoryAPIController.list(req,res);
+        })
+        .post(upload.single('image'),function(req, res){
+            var categoryAPIController = require("./APIControllers/CategoryAPIController");
+            categoryAPIController.save(req,res);            
+        });
     app.use('/api', apiRouter);
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     

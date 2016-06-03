@@ -23,8 +23,25 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
           controller: "User.ListController"          
         })
         .state('adventures', {
-          url: "/admin/adventures",
+          abstract: true,  
+          url: "/admin/adventure",
           templateUrl: "views/admin/adventures.tpl.html"
+        })
+         .state('adventures.list', {
+          url: "/list",
+          templateUrl: "views/admin/adventure.list.tpl.html",
+          controller: "AdventureController.list"
+          
+        })
+         .state('adventures.edit', {
+          url: "/edit/:id",
+          templateUrl: "views/admin/adventure.edit.tpl.html",
+          controller: "AdventureController.edit"
+        })
+        .state('adventures.add', {
+          url: "/add",
+          templateUrl: "views/admin/adventure.add.tpl.html",
+          controller: "AdventureController.add"
         })
         .state('fuel', {
           url: "/admin/fuel",
@@ -33,6 +50,24 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
         .state('resto', {
           url: "/admin/resto",
           templateUrl: "views/admin/resto.tpl.html"
+        })
+        .state('category', {
+          abstract: true,  
+          url: "/admin/category",
+          templateUrl: "views/admin/adventures.tpl.html"
+        })
+         .state('category.list', {
+          url: "/list",
+          templateUrl: "views/admin/category.list.tpl.html",
+          controller:"CategoryController.list"          
+        })
+         .state('category.edit', {
+          url: "/edit/:id",
+          templateUrl: "views/admin/category.edit.tpl.html",          
+        })
+        .state('category.add', {
+          url: "/add",
+          templateUrl: "views/admin/category.add.tpl.html",          
         })
 });
 var config = {
