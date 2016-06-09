@@ -4,12 +4,15 @@
   "description": "REST API",
   "main": "index.js",
   "dependencies": {
+    "aws-sdk": "^2.3.17",
     "body-parser": "^1.15.1",
     "express": "^4.13.4",
     "gulp": "^3.9.1",
     "gulp-nodemon": "^2.0.7",
     "mongoose": "^4.4.19",
-    "morgan": "^1.7.0"
+    "morgan": "^1.7.0",
+    "multer": "^1.1.0",
+    "shortid": "^2.2.6"
   },
   "devDependencies": {},
   "scripts": {
