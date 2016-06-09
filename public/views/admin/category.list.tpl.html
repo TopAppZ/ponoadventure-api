@@ -27,11 +27,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="adventure in adventures">                            
-                            <td>{{adventure.city}}</td>
+                        <tr ng-repeat="category in categories">                            
+                            <td>{{category.name}}</td>
+                            <td align="center" ><img width="40" height="40" ng-src="{{category.image}}" /></td>
                             <td align="center">                                
                                 <button ng-click="editUser(user._id)" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-pencil"></span></button>                                
-                                <button class="btn btn-sm btn-default"><span class="glyphicon glyphicon-remove"></span></button>
+                                <button ng-click="deleteCategory(category)" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-remove"></span></button>
                             </td>
                         </tr>                        
                     </tbody>

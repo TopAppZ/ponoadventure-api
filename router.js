@@ -43,7 +43,13 @@ module.exports = function(express, app){
         .post(upload.single('image'),function(req, res){
             var categoryAPIController = require("./APIControllers/CategoryAPIController");
             categoryAPIController.save(req,res);            
-        });
+        })
+        
+    apiRouter.route('/category/:id')
+        .delete(function(req,res){
+            var categoryAPIController = require("./APIControllers/CategoryAPIController");
+            categoryAPIController.delete(req,res);            
+        })
     app.use('/api', apiRouter);
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     

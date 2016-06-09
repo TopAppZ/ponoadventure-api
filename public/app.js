@@ -67,7 +67,8 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
         })
         .state('category.add', {
           url: "/add",
-          templateUrl: "views/admin/category.add.tpl.html",          
+          templateUrl: "views/admin/category.add.tpl.html",     
+          controller:"CategoryController.add"
         })
 });
 var config = {

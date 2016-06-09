@@ -16,13 +16,13 @@
         <div class="col-lg-8">
             <div class="form-group">
                 <label>Name</label>
-                <input class="form-control" placeholder="Enter text">
+                <input class="form-control" name="name" ng-model="cat.name" placeholder="Enter text">
             </div>
             <div class="form-group">
                 <label>Icon file</label>
-                <input type="file">
+                <input type="file" fileread="cat.image" />
             </div>
-            <button type="submit" class="btn btn-default">Submit Button</button>
+            <button ng-click="save()" type="submit" class="btn btn-default">Submit</button>
         </div>
     </div>
 </div>

@@ -14,31 +14,38 @@ module.exports = {
         var category = new Category({"name":req.body.name, "image":null });
         category.save(function(err){
             if(!err){
-                var fileStream = fs.createReadStream(req.file.path);
-                fileStream.on('error', function (err) {
-                    if (err) { res.send(err); }
-                });  
-                fileStream.on('open', function () {
-                    var key = "images/" + req.body.name.replace(/\s/g, "")  + shortid.generate()
-                    var s3 = new AWS.S3({params: {Bucket: 'pono-adventure-s3', Key: key, ContentType: req.file.mimetype}});
-                    s3.upload({Body: fileStream}, function(err, data) {
-                        if(!err){
-                            console.log(data);
-                            category.image = data.Location;
-                            category.save(function(err){
-                                res.json(category);
-                            });                            
-                        } else {
-                            res.json(err);
-                        }
-                    });
-                });                
+                var buf = new Buffer(req.body.image.replace(/^data:image\/\w+;base64,/, ""),'base64')    
+                var key = "images/" + req.body.name.replace(/\s/g, "")  + shortid.generate()
+                var s3 = new AWS.S3({params: {Bucket: 'pono-adventure-s3', Key: key, ContentType: "image/png"}});
+                s3.upload({Body: buf}, function(err, data) {
+                    if(!err){
+                        console.log(data);
+                        category.image = data.Location;
+                        category.save(function(err){
+                            res.json(category);
+                        });                            
+                    } else {
+                        res.json(err);
+                    }
+                });
+                            
             } else {
                 res.json(err);
             }
-        })                  
-        
+        })                
+    },
+    delete: function(req,res){
+        Category.remove({"_id":req.params.id}, function(err, removed){
+            if(err){
+                res.status(400).send(err);
+            } else {
+                if(removed.n == 0){
+                    res.status(404).send();
+                } else {
+                    res.json(removed);
+                }
+            }
+        })
     }
-        
-       
+    
 }
