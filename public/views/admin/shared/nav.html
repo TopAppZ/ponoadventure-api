@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" ng-controller="NavigationController">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -117,31 +117,17 @@
                         <a ui-sref="home"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
                     <li>
-                        <a ui-sref="users.list"><i class="fa fa-fw fa-bar-chart-o"></i> Users</a>
+                        <a ui-sref="users.list"><i class="fa fa-fw fa-user"></i> Users</a>
                     </li>
                     <li>
-                        <a ui-sref="category.list"><i class="fa fa-fw fa-bar-chart-o"></i> Category</a>
+                        <a ui-sref="category.list"><i class="fa fa-fw fa-folder-o"></i> Category</a>
                     </li>
                     <li>
-                        <a ui-sref="adventures.list"><i class="fa fa-fw fa-table"></i> Adventures</a>
-                    </li>
-                    <li>
-                        <a ui-sref="resto"><i class="fa fa-fw fa-edit"></i> Resto</a>
-                    </li>
-                    <li>
-                        <a ui-sref="fuel"><i class="fa fa-fw fa-desktop"></i> Fuel</a>
-                    </li>                    
-                    <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Others <i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="demo" class="collapse">
-                            <li>
-                                <a href="#">Dropdown Item</a>
-                            </li>
-                            <li>
-                                <a href="#">Dropdown Item</a>
-                            </li>
-                        </ul>
-                    </li>                    
+                        <a ui-sref="adventures.list"><i class="fa fa-fw fa-location-arrow"></i> Places</a>
+                    </li>                                       
+                    <li ng-repeat="category in categories">
+                        <a href="#"><i class="fa fa-fw fa-long-arrow-right"></i> {{category.name}}</a>
+                    </li>                   
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

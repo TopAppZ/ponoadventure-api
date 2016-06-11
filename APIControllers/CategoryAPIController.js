@@ -10,14 +10,14 @@ module.exports = {
     },
     save: function(req,res){
         AWS.config.update({region: 'us-west-2'});
-        AWS.config.update({accessKeyId: 'AKIAI5KVUNEOEWATYJNQ', secretAccessKey: '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'});
+        AWS.config.update({accessKeyId: 'AKIAIJ4H55JMYOBEQQZA', secretAccessKey: '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'});
         var category = new Category({"name":req.body.name, "image":null });
         category.save(function(err){
-            if(!err){
+            if(!err){               
                 var buf = new Buffer(req.body.image.replace(/^data:image\/\w+;base64,/, ""),'base64')    
                 var key = "images/" + req.body.name.replace(/\s/g, "")  + shortid.generate()
                 var s3 = new AWS.S3({params: {Bucket: 'pono-adventure-s3', Key: key, ContentType: "image/png"}});
-                s3.upload({Body: buf}, function(err, data) {
+                s3.upload({Body: buf}, function(uerr, data) {
                     if(!err){
                         console.log(data);
                         category.image = data.Location;
@@ -27,6 +27,7 @@ module.exports = {
                     } else {
                         res.json(err);
                     }
+                    
                 });
                             
             } else {
