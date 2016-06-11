@@ -11,8 +11,8 @@ mongoose.connect(config.database, function(err){
         console.log('connection successful');
     }
 })
-app.use(bodyParser.urlencoded({extended:true}));
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '50MB'}));
+app.use(bodyParser.urlencoded({limit: '50MB', extended: true}));
 app.use(morgan('dev'));
 
 var router = require('./router')(express, app);

@@ -40,7 +40,7 @@ module.exports = function(express, app){
             var categoryAPIController = require("./APIControllers/CategoryAPIController");
             categoryAPIController.list(req,res);
         })
-        .post(upload.single('image'),function(req, res){
+        .post(function(req, res){
             var categoryAPIController = require("./APIControllers/CategoryAPIController");
             categoryAPIController.save(req,res);            
         })

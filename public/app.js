@@ -1,7 +1,7 @@
-app = angular.module("app", ['ui.router','ngResource']);
+app = angular.module("app", ['ui.router','ngResource', 'angular-loading-bar']);
 app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
-    //$urlRouterProvider.otherwise("/admin/home");    
+    $urlRouterProvider.otherwise("/admin/home");    
     $stateProvider
         .state('home', {
           url: "/admin/home",

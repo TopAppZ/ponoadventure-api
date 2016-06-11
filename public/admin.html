@@ -22,7 +22,7 @@
 
     <!-- Custom Fonts -->
     <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
+    <link href="/vendor/angular-loading-bar/build/loading-bar.min.css" type="text/css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -34,7 +34,7 @@
 
 </head>
 
-<body ng-controller="main">
+<body>
 
     <div id="wrapper">
 
@@ -45,8 +45,8 @@
 
         </div>
         <!-- /#page-wrapper -->
-         <div class="progress_gif_holder ng-hide" ng-show="isWait">
-            {{isWait}}
+        <div class="progress_gif_holder" id="progressWrapper">    
+            <img src="images/loader.svg" />
         </div>
     </div>
     <!-- /#wrapper -->
@@ -56,19 +56,20 @@
     <script type="text/javascript" src="/vendor/angular/angular.js"></script>
     <script type="text/javascript" src="/vendor/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script type="text/javascript" src="/vendor/angular-resource/angular-resource.js"></script>
-
+    <script type="text/javascript" src="/vendor/angular-loading-bar/build/loading-bar.min.js"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="/js/bootstrap.min.js"></script>    
     
     <script type="text/javascript" src="app.js"></script>
-    <script type="text/javascript" src="/controllers/admin/main.js"></script>
+    <script type="text/javascript" src="/controllers/admin/NavigationController.js"></script>
     <script type="text/javascript" src="/services/admin/UserService.js"></script>
     <script type="text/javascript" src="/controllers/admin/user/UserController.js"></script>  
     <script type="text/javascript" src="/services/admin/AdventureService.js"></script>
     <script type="text/javascript" src="/controllers/admin/adventure/AdventureController.js"></script>  
     <script type="text/javascript" src="/services/admin/CategoryService.js"></script>
     <script type="text/javascript" src="/controllers/admin/category/CategoryController.js"></script>
-     <script type="text/javascript" src="/directives/fileread.js"></script>
+    <script type="text/javascript" src="/directives/fileread.js"></script>
+    <script type="text/javascript" src="/services/admin/ShareData.js"></script>
 </body>
 
 </html>
