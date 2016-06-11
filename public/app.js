@@ -1,4 +1,4 @@
-app = angular.module("app", ['ui.router','ngResource', 'angular-loading-bar']);
+app = angular.module("app", ['ui.router','ngResource', 'chieffancypants.loadingBar']);
 app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
     $urlRouterProvider.otherwise("/admin/home");    
