@@ -15,8 +15,64 @@
     <div class="row">
         <div class="col-lg-8">
             <div class="form-group">
-                <label>Text Input with Placeholder</label>
-                <input class="form-control" placeholder="Enter text">
+                <label>Place name</label>
+                <input class="form-control" placeholder="Place name" ng-model="place.name" required>
+            </div>
+            <div class="form-group">
+                <label>Address 1</label>
+                <input class="form-control" placeholder="Address 1" ng-model="place.address_1" required>
+            </div>
+            <div class="form-group">
+                <label>Address 2 (optional)</label>
+                <input class="form-control" placeholder="Address 2 (optional)" ng-model="place.address_2">
+            </div>
+            <div class="form-group">
+                <label>City</label>
+                <input class="form-control" placeholder="City" ng-model="place.city" required>
+            </div>
+            <div class="form-group">
+                <label>State</label>
+                <input class="form-control" placeholder="State" ng-model="place.state" required>
+            </div>
+            <div class="form-group">
+                <label>Country</label>
+                <input class="form-control" placeholder="Country" ng-model="place.country" required>
+            </div>
+            <div class="form-group">
+                <label>Zip Code</label>
+                <input class="form-control" placeholder="Zip Code" ng-model="place.zip" required>
+            </div>
+            <div class="form-group">
+                <div class="form-group">
+                    <label>Category</label>
+                    <select class="form-control" ng-model="place.category" required>                      
+                        <option ng-repeat="category in categories">{{category.name}}</option>            
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Latitude</label>
+                <input class="form-control" placeholder="Latitude" ng-model="place.coord.latitude" required>
+            </div>
+            <div class="form-group">
+                <label>Longitude</label>
+                <input class="form-control" placeholder="Longitude" ng-model="place.coord.longitude" required>
+            </div>
+            <div class="form-group">
+                <label>Video URL</label>
+                <input class="form-control" placeholder="Video URL" ng-model="place.video_url">
+            </div>
+            <div class="form-group">
+                <button ng-click="save()" type="submit" class="btn btn-default">Submit</button>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                <div class="alert alert-danger" id="place_add_error">
+                    <ul>
+                        <li ng-repeat="error in errors">{{error}}</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

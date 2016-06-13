@@ -239,3 +239,6 @@ ul.alert-dropdown {
     position: absolute;
     top: 0; left: 0; bottom: 0; right: 0;
 }
+#place_add_error {
+    display: none;
+}

@@ -7,6 +7,28 @@ app.controller('AdventureController.list', ['$scope','$config','AdventureService
         $state.go("adventures.add");
     }
 }]);
-app.controller('AdventureController.add', ['$scope','$config','AdventureService','$state', function($scope, $config, adventureService, $state) {    
-    
+app.controller('AdventureController.add', ['$scope','$config','AdventureService','$state', 'SharedDataService', function($scope, $config, adventureService, $state, sharedDataService) {    
+    $scope.categories = sharedDataService.categories;
+    $scope.save = function(){
+    	$('#place_add_error').hide();
+    	console.log($scope.place);
+    	$("#progressWrapper").show();
+        var place = new adventureService();          
+        adventureService.save($scope.place, function(e){
+        	console.log(e);
+            $("#progressWrapper").hide();
+            $state.go("adventures.list");
+            
+        }, function(err){
+        	console.log(err);
+        	$scope.errors = [];
+        	$("#progressWrapper").hide();
+        	for (var prop in err.data.errors) {
+			    console.log(prop + " is " + err.data.errors[prop].message);
+			    $scope.errors.push(err.data.errors[prop].message);
+			}
+			$('#place_add_error').show();
+			window.scrollTo(0, 0);
+        })
+    }
 }]);
