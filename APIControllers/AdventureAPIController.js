@@ -7,7 +7,7 @@ module.exports = {
             if(!err){                
                 res.json(adventure);
             } else {
-                res.json(err);
+                res.status(400).send(err);
             }
         });
     },
