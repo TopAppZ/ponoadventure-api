@@ -1,14 +1,14 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var adventureSchema = new Schema({
-    name: {type:String, required:true},
-    address_1: {type: String, required:true},
+    name: {type:String, required:[true,'Name is required']},
+    address_1: {type: String, required:[true, 'Address line 1 is required']},
     address_2: String,
-    city: {type:String, required:true},
-    state: {type:String, required:true},
-    country: {type:String, required:true},
-    zip: {type:String, required:true},
-    category:{type:String, required:true},
+    city: {type:String, required:[true, 'City is required']},
+    state: {type:String, required:[true, 'State is required']},
+    country: {type:String, required:[true, 'Country is required']},
+    zip: {type:String, required:[true, 'Zip code is required']},
+    category:{type:String, required:[true, 'Category is required']},
     coord: {
         latitude: String,
         longitude: String,        

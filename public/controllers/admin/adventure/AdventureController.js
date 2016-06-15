@@ -10,6 +10,7 @@ app.controller('AdventureController.list', ['$scope','$config','AdventureService
 app.controller('AdventureController.add', ['$scope','$config','AdventureService','$state', 'SharedDataService', function($scope, $config, adventureService, $state, sharedDataService) {    
     $scope.categories = sharedDataService.categories;
     $scope.save = function(){
+    	$(".form-control").css('border', '1px solid #ccc');
     	$('#place_add_error').hide();
     	console.log($scope.place);
     	$("#progressWrapper").show();
@@ -26,6 +27,7 @@ app.controller('AdventureController.add', ['$scope','$config','AdventureService'
         	for (var prop in err.data.errors) {
 			    console.log(prop + " is " + err.data.errors[prop].message);
 			    $scope.errors.push(err.data.errors[prop].message);
+			    $('#'+ prop).css('border', '1px solid red');
 			}
 			$('#place_add_error').show();
 			window.scrollTo(0, 0);
