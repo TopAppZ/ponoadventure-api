@@ -10,7 +10,7 @@ module.exports = {
     },
     save: function(req,res){
         AWS.config.update({region: 'us-west-2'});
-        AWS.config.update({accessKeyId: 'AKIAJTENRDSKUS5FD4KQ', secretAccessKey: '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'});
+        AWS.config.update({accessKeyId: 'AKIAIDPTDR4BJUVYNEZA', secretAccessKey: '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'});
         var category = new Category({"name":req.body.name, "image":null });
         category.save(function(err){
             if(!err){               
