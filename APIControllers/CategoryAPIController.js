@@ -9,8 +9,8 @@ module.exports = {
          })
     },
     save: function(req,res){
-        AWS.config.update({region: 'us-west-2'});
-        AWS.config.update({accessKeyId: 'AKIAIDPTDR4BJUVYNEZA', secretAccessKey: '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'});
+        /*AWS.config.update({region: 'us-west-2'});
+        AWS.config.update({accessKeyId: 'AKIAIDPTDR4BJUVYNEZA', secretAccessKey: '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'});*/
         var category = new Category({"name":req.body.name, "image":null });
         category.save(function(err){
             if(!err){               
