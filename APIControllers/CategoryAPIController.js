@@ -8,7 +8,6 @@ module.exports = {
               res.json(categories);
          })
     },
-<<<<<<< 94f8d167c11e8e02aa6d951269fd6df54ebe24ab
     save: function(req,res){
         var category = new Category({"name":req.body.name, "image":null });
         category.save(function(err){

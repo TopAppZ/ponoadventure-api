@@ -35,6 +35,11 @@ module.exports = function(express, app){
             var adventureAPIController = require("./APIControllers/AdventureAPIController");
             adventureAPIController.list(req,res);
         })
+    apiRouter.route('/adventure/:id')
+        .get(function(req,res){
+            var adventureAPIController = require("./APIControllers/AdventureAPIController");
+            adventureAPIController.get(req,res);
+        })
     apiRouter.route('/category')
         .get(function(req, res){
             var categoryAPIController = require("./APIControllers/CategoryAPIController");

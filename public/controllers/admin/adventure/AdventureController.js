@@ -6,6 +6,9 @@ app.controller('AdventureController.list', ['$scope','$config','AdventureService
     $scope.add = function(){
         $state.go("adventures.add");
     }
+    $scope.editPlace = function(place){
+        $state.go("adventures.edit", {"id": place._id});
+    }
 }]);
 app.controller('AdventureController.add', ['$scope','$config','AdventureService','$state', 'SharedDataService', function($scope, $config, adventureService, $state, sharedDataService) {    
     $scope.categories = sharedDataService.categories;
@@ -14,12 +17,14 @@ app.controller('AdventureController.add', ['$scope','$config','AdventureService'
     	$('#place_add_error').hide();
     	console.log($scope.place);
     	$("#progressWrapper").show();
-        var place = new adventureService();          
+        var place = new adventureService(); 
+        if(($("#place_image_container").attr("src")) != '' && typeof($scope.place) != 'undefined'){
+            $scope.place.img = $("#place_image_container").attr("src");
+        }         
         adventureService.save($scope.place, function(e){
-        	console.log(e);
             $("#progressWrapper").hide();
-            $state.go("adventures.list");
-            
+        	console.log(e);            
+            $state.go("adventures.list");            
         }, function(err){
         	console.log(err);
         	$scope.errors = [];
@@ -34,3 +39,11 @@ app.controller('AdventureController.add', ['$scope','$config','AdventureService'
         })
     }
 }]);
+
+app.controller('AdventureController.edit', ['$scope','$config','AdventureService','$state', 'SharedDataService', function($scope, $config, adventureService, $state, sharedDataService) {  
+    $scope.categories = sharedDataService.categories;
+    var adventure = adventureService.get({id:$state.params.id}, function() {        
+        console.log(adventure);
+        $scope.place = adventure;
+    });
+}]);  
