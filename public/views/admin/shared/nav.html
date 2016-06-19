@@ -120,15 +120,15 @@
                         <a ui-sref="users.list"><i class="fa fa-fw fa-user"></i> Users</a>
                     </li>
                     <li>
-                        <a ui-sref="category.list" data-toggle="collapse" data-target="#demo" class="" aria-expanded="false"><i class="fa fa-fw fa-arrows-v"></i> Category <i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="demo" class="collapse in" aria-expanded="false">
-                            <li ng-repeat="category in categories">
-                                <a ui-sref="category.details({id:category._id})"><i class="fa fa-fw fa-long-arrow-right"></i> {{category.name}}</a>
-                            </li> 
-                        </ul>
+                        <a ui-sref="category.list"><i class="fa fa-fw fa-user"></i> Users</a>                        
                     </li>
                     <li>
-                        <a ui-sref="adventures.list"><i class="fa fa-fw fa-location-arrow"></i> Places</a>
+                        <a ui-sref="adventures.list({filter:'',value:category.name})" data-toggle="collapse" data-target="#demo" class="" aria-expanded="false"><i class="fa fa-fw fa-location-arrow"></i> Places <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="demo" class="collapse in" aria-expanded="false">
+                            <li ng-repeat="category in categories">
+                                <a ui-sref="adventures.list({filter:'category',value:category.name})"><i class="fa fa-fw fa-long-arrow-right"></i> {{category.name}}</a>
+                            </li> 
+                        </ul>
                     </li>                  
                                       
                 </ul>

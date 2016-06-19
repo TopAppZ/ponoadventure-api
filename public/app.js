@@ -28,7 +28,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
           templateUrl: "views/admin/adventures.tpl.html"
         })
          .state('adventures.list', {
-          url: "/list",
+          url: "/list?filter&value",
           templateUrl: "views/admin/adventure.list.tpl.html",
           controller: "AdventureController.list"
           
@@ -61,11 +61,6 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
           url: "/add",
           templateUrl: "views/admin/category.add.tpl.html",     
           controller:"CategoryController.add"
-        })
-        .state('category.details', {
-          url: "/:id",
-          templateUrl: "views/admin/category.details.tpl.html",     
-          controller:"CategoryController.details"
         })
 });
 var config = {
