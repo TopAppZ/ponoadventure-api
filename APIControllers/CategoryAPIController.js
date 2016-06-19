@@ -8,6 +8,11 @@ module.exports = {
               res.json(categories);
          })
     },
+    get: function(req,res){
+        Category.findOne({_id:req.params.id},function(err,categories){
+              res.json(categories);
+         })
+    },
     save: function(req,res){
         var category = new Category({"name":req.body.name, "image":null });
         category.save(function(err){

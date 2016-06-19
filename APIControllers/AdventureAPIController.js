@@ -33,7 +33,7 @@ module.exports = {
         });
     },
     list:function(req,res){
-        Adventure.find({})
+        Adventure.find(req.query)
             .populate('reviews.posted_by','_id full_name')            
             .exec(function(error, adventures) {
                 res.json(adventures);
@@ -45,5 +45,5 @@ module.exports = {
             .exec(function(error, adventures) {
                 res.json(adventures);
             })
-    }
+    },
 }

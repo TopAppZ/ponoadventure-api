@@ -1,6 +1,7 @@
 app.controller('CategoryController.list', ['$scope','$config','CategoryService','$state','SharedDataService', function($scope, $config, categryService,$state, sharedDataService) {    
     $("#progressWrapper").show();
-    var categories = categryService.query(function() {       
+    var categories = categryService.query(function() {
+        console.log(categories);       
         $scope.categories = categories;
         sharedDataService.categories = categories;        
         $("#progressWrapper").hide();
@@ -30,6 +31,16 @@ app.controller('CategoryController.add', ['$scope','$config','CategoryService','
             $state.go("category.list");
             console.log(e);
         })        
-    }
-    
+    }    
+}]);
+app.controller('CategoryController.details', ['$scope','$config','CategoryService','$state','AdventureService', function($scope, $config, categryService,$state, adventureService) {
+    $("#progressWrapper").show();
+    var category = categryService.get({id:$state.params.id}, function() {  
+        console.log(category.name);
+        var places = adventureService.query({category:category.name}, function(){
+            console.log(places);
+            $scope.adventures = places;
+        })           
+        $("#progressWrapper").hide();
+    });
 }]);

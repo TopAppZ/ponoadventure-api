@@ -51,6 +51,10 @@ module.exports = function(express, app){
         })
         
     apiRouter.route('/category/:id')
+        .get(function(req,res){
+            var categoryAPIController = require("./APIControllers/CategoryAPIController");
+            categoryAPIController.get(req,res);            
+        })
         .delete(function(req,res){
             var categoryAPIController = require("./APIControllers/CategoryAPIController");
             categoryAPIController.delete(req,res);            

@@ -1,0 +1,45 @@
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                Adventures <small>List of adventures</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li class="active">
+                    <i class="fa fa-dashboard"></i> Adventures
+                    <button class="btn btn-sm btn-default" ng-click="add()"><span class="glyphicon glyphicon-plus"></span></button>
+                </li>
+            </ol>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-lg-12">
+            <h2>List of Adventures</h2>            
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Address</th>
+                            <th>Contact Number</th>
+                            <th>Options</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="adventure in adventures">
+                            <td>{{adventure.name}}</td>
+                            <td>{{adventure.address_1}}</td>
+                            <td>{{adventure.city}}</td>
+                            <td align="center">                                
+                                <button ng-click="editPlace(adventure)" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-pencil"></span></button>                                
+                                <button class="btn btn-sm btn-default"><span class="glyphicon glyphicon-remove"></span></button>
+                            </td>
+                        </tr>                        
+                    </tbody>
+                </table>
+            </div>
+        </div>                    
+    </div>
+</div>
