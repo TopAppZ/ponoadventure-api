@@ -1,6 +1,7 @@
 app.controller('CategoryController.list', ['$scope','$config','CategoryService','$state','SharedDataService', function($scope, $config, categryService,$state, sharedDataService) {    
-    $("#progressWrapper").show();
-    var categories = categryService.query(function() {       
+    $("#progressWrapper").show();    
+    var categories = categryService.query(function() {
+        console.log(categories);       
         $scope.categories = categories;
         sharedDataService.categories = categories;        
         $("#progressWrapper").hide();
@@ -30,6 +31,5 @@ app.controller('CategoryController.add', ['$scope','$config','CategoryService','
             $state.go("category.list");
             console.log(e);
         })        
-    }
-    
+    }    
 }]);

@@ -242,3 +242,12 @@ ul.alert-dropdown {
 #place_add_error {
     display: none;
 }
+
+.place_image_container {
+    width: 100%;
+    height: 150px;
+    border: 1px solid #bababa;
+}
+.place_image_container > h2 {
+    text-align: center;
+}

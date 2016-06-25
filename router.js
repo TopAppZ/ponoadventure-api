@@ -35,6 +35,11 @@ module.exports = function(express, app){
             var adventureAPIController = require("./APIControllers/AdventureAPIController");
             adventureAPIController.list(req,res);
         })
+    apiRouter.route('/adventure/:id')
+        .get(function(req,res){
+            var adventureAPIController = require("./APIControllers/AdventureAPIController");
+            adventureAPIController.get(req,res);
+        })
     apiRouter.route('/category')
         .get(function(req, res){
             var categoryAPIController = require("./APIControllers/CategoryAPIController");
@@ -46,6 +51,10 @@ module.exports = function(express, app){
         })
         
     apiRouter.route('/category/:id')
+        .get(function(req,res){
+            var categoryAPIController = require("./APIControllers/CategoryAPIController");
+            categoryAPIController.get(req,res);            
+        })
         .delete(function(req,res){
             var categoryAPIController = require("./APIControllers/CategoryAPIController");
             categoryAPIController.delete(req,res);            
