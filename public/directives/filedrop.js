@@ -23,6 +23,7 @@ app.directive("filedrop",function () {
 			    reader.onload = (function(theFile) {
         			return function(e) {			       		
 			       		dropzone.attr('src', e.target.result);
+			       		dropzone.attr('changed', 1);
         			};
       			})(files[0]);
 
