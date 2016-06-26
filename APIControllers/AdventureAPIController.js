@@ -46,4 +46,42 @@ module.exports = {
                 res.json(adventures);
             })
     },
+    update: function(req,res){
+        if (req.body.imgChanged == 0) {
+            Adventure.findOneAndUpdate({_id:req.params.id}, req.body, {runValidators: true }, function (err, adventure) {
+                if(!err){
+                    res.json(adventure);
+                } else {
+                    res.status(400).send({ error: err });
+                }
+            })
+        } else {            
+            Adventure.findOneAndUpdate({_id:req.params.id}, req.body, {runValidators: true }, function (err, adventure) {
+                if(!err){
+                    if (typeof(req.body.img) != 'undefined' ) {
+                        var buf = new Buffer(req.body.img.replace(/^data:image\/\w+;base64,/, ""),'base64')    
+                        var key = "images/" + req.body.name.replace(/\s/g, "")  + shortid.generate()
+                        var s3 = new AWS.S3({params: {Bucket: 'pono-adventure-s3', Key: key, ContentType: "image/png"}});
+                        s3.upload({Body: buf}, function(err, data) {
+                            if(!err){
+                                console.log(data);
+                                adventure.image = data.Location;
+                                adventure.save(function(err){
+                                    res.json(adventure);
+                                });                            
+                            } else {
+                                res.json(err);
+                            }
+                                               
+                        });
+                    } else {
+                        res.json(adventure);
+                    }
+                } else {
+                    res.status(400).send({ error: err });
+                }
+            })
+
+        }
+    }
 }

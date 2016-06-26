@@ -48,4 +48,53 @@ app.controller('AdventureController.edit', ['$scope','$config','AdventureService
         console.log(adventure);
         $scope.place = adventure;
     });
+    $scope.update = function(){         
+        $(".form-control").css('border', '1px solid #ccc');
+        $('#place_add_error').hide();        
+        $("#progressWrapper").show();      
+        var isFileChanged = $("#place_image_container").attr("changed");
+        if(isFileChanged == "1"){
+            $scope.place.imgChanged = 1;
+            if(($("#place_image_container").attr("src")) != '' && typeof($scope.place) != 'undefined'){                
+                $scope.place.img = $("#place_image_container").attr("src");
+            } 
+            $scope.place.$update(function(){
+                console.log("Updated");
+                $("#place_image_container").attr("changed", 0);
+                $("#progressWrapper").hide();
+                console.log($scope.place);            
+            }, function(err){
+                console.log(err);
+                $scope.errors = [];
+                $("#progressWrapper").hide();
+                for (var prop in err.data.error.errors) {
+                    console.log(prop + " is " + err.data.error.errors[prop].message);
+                    $scope.errors.push(err.data.error.errors[prop].message);
+                    $('#'+ prop).css('border', '1px solid red');
+                }
+                $('#place_add_error').show();
+                window.scrollTo(0, 0);
+            })
+        } else {
+            $scope.place.imgChanged = 0;
+            $scope.place.$update(function(){
+                console.log("Updated");
+                $("#place_image_container").attr("changed", 0);
+                $("#progressWrapper").hide();
+                console.log($scope.place);            
+            }, function(err){
+                console.log(err);                
+                $scope.errors = [];
+                $("#progressWrapper").hide();
+
+                for (var prop in err.data.error.errors) {
+                    console.log(prop + " is " + err.data.error.errors[prop].message);
+                    $scope.errors.push(err.data.error.errors[prop].message);
+                    $('#'+ prop).css('border', '1px solid red');
+                }
+                $('#place_add_error').show();
+                window.scrollTo(0, 0);
+            })
+        }
+    }
 }]);  
