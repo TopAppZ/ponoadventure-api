@@ -48,7 +48,7 @@ module.exports = {
     },
     update: function(req,res){
         if (req.body.imgChanged == 0) {
-            Adventure.findOneAndUpdate({_id:req.params.id}, req.body, {runValidators: true }, function (err, adventure) {
+            Adventure.findOneAndUpdate({_id:req.params.id}, req.body, {runValidators: true, new:true}, function (err, adventure) {
                 if(!err){
                     res.json(adventure);
                 } else {
@@ -56,7 +56,7 @@ module.exports = {
                 }
             })
         } else {            
-            Adventure.findOneAndUpdate({_id:req.params.id}, req.body, {runValidators: true }, function (err, adventure) {
+            Adventure.findOneAndUpdate({_id:req.params.id}, req.body, {runValidators: true,new:true }, function (err, adventure) {
                 if(!err){
                     if (typeof(req.body.img) != 'undefined' ) {
                         var buf = new Buffer(req.body.img.replace(/^data:image\/\w+;base64,/, ""),'base64')    
