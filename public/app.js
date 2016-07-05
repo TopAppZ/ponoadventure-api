@@ -28,7 +28,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
           templateUrl: "views/admin/adventures.tpl.html"
         })
          .state('adventures.list', {
-          url: "/list?filter&value",
+          url: "/list?filter&value&loc",
           templateUrl: "views/admin/adventure.list.tpl.html",
           controller: "AdventureController.list"
           

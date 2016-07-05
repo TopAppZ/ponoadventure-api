@@ -34,11 +34,30 @@ module.exports = {
         });
     },
     list:function(req,res){
-        Adventure.find(req.query)
+        /*Adventure.find({location: {$geoNear: {type: "Point", coordinates: [88.480676, 22.617091], distanceField:"dis", sphere: true}}})
             .populate('reviews.posted_by','_id full_name')            
             .exec(function(error, adventures) {
                 res.json(adventures);
-            })
+            })*/
+        console.log(req.query);
+        if (req.query.loc) {
+            var lonlat = req.query.loc.split(",");
+            var lon = parseFloat(lonlat[0]);
+            var lat = parseFloat(lonlat[1]);
+        } else {
+            var lon = 0.0;
+            var lat = 0.0;
+        }
+        if(req.query.category) {
+            var query = {category:req.query.category}
+        } else {
+            var query = {}
+        }
+        Adventure.geoNear({type: "Point", coordinates: [lon,lat]}, {
+          spherical: true, distanceMultiplier: 1/1000, query:query
+        }).then(function (doc) {
+            res.json(doc);
+        });
     },
     get:function(req,res){
         Adventure.findOne({"_id":req.params.id})
