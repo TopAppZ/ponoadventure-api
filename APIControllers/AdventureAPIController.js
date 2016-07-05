@@ -53,11 +53,29 @@ module.exports = {
         } else {
             var query = {}
         }
-        Adventure.geoNear({type: "Point", coordinates: [lon,lat]}, {
+        /*Adventure.geoNear({type: "Point", coordinates: [lon,lat]}, {
           spherical: true, distanceMultiplier: 1/1000, query:query
         }).then(function (doc) {
             res.json(doc);
-        });
+        });*/
+        Adventure.aggregate(
+              [
+                { "$geoNear": {
+                    "near": {
+                      "type": "Point",
+                      "coordinates": [ lon, lat ]
+                    },
+                    "spherical": true,
+                    "distanceField": "dis",
+                    "query":query,
+                }},
+                { "$sort": { "dis": 1 } } 
+
+              ], function(err,adventures){
+
+                    res.json(adventures);
+              }
+        );
     },
     get:function(req,res){
         Adventure.findOne({"_id":req.params.id})
