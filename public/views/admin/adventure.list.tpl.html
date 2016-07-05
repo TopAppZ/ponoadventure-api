@@ -29,11 +29,11 @@
                     </thead>
                     <tbody>
                         <tr ng-repeat="adventure in adventures">
-                            <td>{{adventure.name}}</td>
-                            <td>{{adventure.address_1}}</td>
-                            <td>{{adventure.city}}</td>
+                            <td>{{adventure.obj.name}}</td>
+                            <td>{{adventure.obj.address_1}}</td>
+                            <td>{{adventure.obj.city}}</td>
                             <td align="center">                                
-                                <button ng-click="editPlace(adventure)" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-pencil"></span></button>                                
+                                <button ng-click="editPlace(adventure.obj)" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-pencil"></span></button>                                
                                 <button class="btn btn-sm btn-default"><span class="glyphicon glyphicon-remove"></span></button>
                             </td>
                         </tr>                        

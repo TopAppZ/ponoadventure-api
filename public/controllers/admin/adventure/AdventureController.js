@@ -1,6 +1,7 @@
 app.controller('AdventureController.list', ['$scope','$config','AdventureService','$state', function($scope, $config, adventureService, $state) {    
     var query = {};
     query[$state.params.filter] = $state.params.value;
+    query['loc'] = $state.params.loc;
     var adventures = adventureService.query(query, function() {        
         console.log(adventures);
         $scope.adventures = adventures;
