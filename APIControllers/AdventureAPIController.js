@@ -48,9 +48,13 @@ module.exports = {
             var lon = 0.0;
             var lat = 0.0;
         }
-        
+        if(req.query.category) {
+            var query = {category:req.query.category}
+        } else {
+            var query = {}
+        }
         Adventure.geoNear({type: "Point", coordinates: [lon,lat]}, {
-          spherical: true, distanceMultiplier: 1/1000, query:{category:req.query.category}
+          spherical: true, distanceMultiplier: 1/1000, query:query
         }).then(function (doc) {
             res.json(doc);
         });
