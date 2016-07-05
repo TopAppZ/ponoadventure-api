@@ -9,10 +9,7 @@ var adventureSchema = new Schema({
     country: {type:String, required:[true, 'Country is required']},
     zip: {type:String, required:[true, 'Zip code is required']},
     category:{type:String, required:[true, 'Category is required']},
-    coord: {
-        latitude: { type: String, default: "0.0" },
-        longitude: { type: String, default: "0.0" },        
-    },
+    location: {type: { type: String, default:'Point' }, coordinates: [Number] },
     image:{ type: String, default: "NA" },
     price: { type: String, default: "NA" },
     description: { type: String, default: "NA" },
