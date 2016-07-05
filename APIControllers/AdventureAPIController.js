@@ -5,6 +5,7 @@ var User = require('../models/user');
 var Adventure = require('../models/adventure');
 module.exports = {
     save:function(req,res){
+
         var adventure = new Adventure(req.body);
         adventure.save(function(err){
             if(!err){
@@ -47,6 +48,7 @@ module.exports = {
             })
     },
     update: function(req,res){
+        console.log(req.body);
         if (req.body.imgChanged == 0) {
             Adventure.findOneAndUpdate({_id:req.params.id}, req.body, {runValidators: true, new:true}, function (err, adventure) {
                 if(!err){

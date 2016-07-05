@@ -14,10 +14,14 @@ app.controller('AdventureController.list', ['$scope','$config','AdventureService
 }]);
 app.controller('AdventureController.add', ['$scope','$config','AdventureService','$state', 'SharedDataService', function($scope, $config, adventureService, $state, sharedDataService) {    
     $scope.categories = sharedDataService.categories;
-    $scope.save = function(){
+    $scope.place = {
+        location: {
+            coordinates:[0.0,0.0]
+        }
+    }
+    $scope.save = function(){        
     	$(".form-control").css('border', '1px solid #ccc');
     	$('#place_add_error').hide();
-    	console.log($scope.place);
     	$("#progressWrapper").show();
         var place = new adventureService(); 
         if(($("#place_image_container").attr("src")) != '' && typeof($scope.place) != 'undefined'){
