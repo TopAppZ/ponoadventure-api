@@ -14,8 +14,12 @@ var adventureSchema = new Schema({
     price: { type: String, default: "NA" },
     description: { type: String, default: "NA" },
     video_url: { type: String, default: "NA" },
+    schedule: [],
     reviews:[{content:String, rating:Number, posted_by: {type: Schema.Types.ObjectId, ref: 'User'}, time_stamp:{type:Date, default:Date.now()}}],
     last_updated: {type:Date, default:Date.now()},
     
 });
+adventureSchema.path('schedule').validate(function(value) {
+  return value.length;
+},"Schedule cannot be empty");
 module.exports = mongoose.model('Adventure', adventureSchema);

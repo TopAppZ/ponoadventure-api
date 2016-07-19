@@ -1,4 +1,4 @@
-app = angular.module("app", ['ui.router','ngResource', 'chieffancypants.loadingBar']);
+app = angular.module("app", ['ui.router','ngResource', 'chieffancypants.loadingBar','ui.bootstrap','multipleDatePicker','checklist-model']);
 app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
     $urlRouterProvider.otherwise("/admin/home");    
