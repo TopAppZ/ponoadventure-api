@@ -56,11 +56,13 @@ app.controller('AdventureController.add', ['$scope','$config','AdventureService'
     }
 }]);
 
-app.controller('AdventureController.edit', ['$scope','$config','AdventureService','$state', 'SharedDataService', function($scope, $config, adventureService, $state, sharedDataService) {  
+app.controller('AdventureController.edit', ['$scope','$config','AdventureService','$state', 'SharedDataService', '$compile', function($scope, $config, adventureService, $state, sharedDataService, $compile) {  
     $scope.categories = sharedDataService.categories;
+
     var adventure = adventureService.get({id:$state.params.id}, function() {        
         console.log(adventure);
         $scope.place = adventure;
+        $scope.scheduleComponentIndex = $scope.place.schedule.length;
     });
     $scope.update = function(){         
         $(".form-control").css('border', '1px solid #ccc');
@@ -110,5 +112,12 @@ app.controller('AdventureController.edit', ['$scope','$config','AdventureService
                 window.scrollTo(0, 0);
             })
         }
+    }
+    $scope.addSchedule = function(){        
+        var schedulePanel = $("#schedulePanel");        
+        var elem = $compile("<div schedule value=\"place.schedule[" + $scope.scheduleComponentIndex  +"]\" on-delete=\"deleteSchedule("+ $scope.scheduleComponentIndex++ +")\"></div>")($scope);
+        schedulePanel.append(elem);        
+    }
+    $scope.deleteSchedule = function(e){        
     }
 }]);  

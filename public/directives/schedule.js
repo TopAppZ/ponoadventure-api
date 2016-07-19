@@ -13,7 +13,7 @@ app.directive('schedule', ['$compile',function ($compile) {
         		scope.onDelete();
         		//el.remove();
         	}
-            scope.$watch('value', function(newValue, oldValue) {                
+            scope.$watch('value', function(newValue, oldValue) {                            
                 if (newValue) {
                     console.log(newValue);                                        
                     if(scope.value.type == 'repeat'){
@@ -36,7 +36,7 @@ app.directive('schedule', ['$compile',function ($compile) {
                     var htmlURL = "/directives/templates/multiple_date.tpl.html";
                     var elem = $compile("<div ng-include src=\"\'" + htmlURL +"\'\"></div>")(scope);
                     el.find('#dateTemplate').html(elem);                        
-                }                    
+                }    
                 
             }
         }
