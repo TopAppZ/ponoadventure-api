@@ -13,14 +13,16 @@ app.controller('AdventureController.list', ['$scope','$config','AdventureService
         $state.go("adventures.edit", {"id": place._id});
     }
 }]);
-app.controller('AdventureController.add', ['$scope','$config','AdventureService','$state', 'SharedDataService', function($scope, $config, adventureService, $state, sharedDataService) {    
+app.controller('AdventureController.add', ['$scope','$config','AdventureService','$state', 'SharedDataService', '$compile', function($scope, $config, adventureService, $state, sharedDataService, $compile) {    
     $scope.categories = sharedDataService.categories;
+    $scope.scheduleComponentIndex = 0;
     $scope.place = {
         location: {
             coordinates:[0.0,0.0]
         }
     }
-    $scope.save = function(){        
+    $scope.place.schedule = [];
+    $scope.save = function(){                        
     	$(".form-control").css('border', '1px solid #ccc');
     	$('#place_add_error').hide();
     	$("#progressWrapper").show();
@@ -28,7 +30,7 @@ app.controller('AdventureController.add', ['$scope','$config','AdventureService'
         if(($("#place_image_container").attr("src")) != '' && typeof($scope.place) != 'undefined'){
             $scope.place.img = $("#place_image_container").attr("src");
         }         
-        adventureService.save($scope.place, function(e){
+        adventureService.save($scope.place, function(e){           
             $("#progressWrapper").hide();
         	console.log(e);            
             $state.go("adventures.list");            
@@ -44,6 +46,13 @@ app.controller('AdventureController.add', ['$scope','$config','AdventureService'
 			$('#place_add_error').show();
 			window.scrollTo(0, 0);
         })
+    }
+    $scope.addSchedule = function(){        
+        var schedulePanel = $("#schedulePanel");        
+        var elem = $compile("<div schedule value=\"place.schedule[" + $scope.scheduleComponentIndex  +"]\" on-delete=\"deleteSchedule("+ $scope.scheduleComponentIndex++ +")\"></div>")($scope);
+        schedulePanel.append(elem);        
+    }
+    $scope.deleteSchedule = function(e){        
     }
 }]);
 

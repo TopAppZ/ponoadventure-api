@@ -1,0 +1,12 @@
+<div class="well">	
+    <div class="form-group">
+        <label>Type</label>
+        <select class="form-control" ng-model='value.type' ng-change="loadDateTemplate()">
+            <option value="repeat">Repetative days</option>
+            <option value="date">Multiple Dates</option>
+        </select>
+    </div>   
+    <div class="form-group" id="dateTemplate">
+    </div>
+    <button type="button" class="btn btn-xs btn-danger" ng-click="removeSchedule()">Remove</button>
+</div>
