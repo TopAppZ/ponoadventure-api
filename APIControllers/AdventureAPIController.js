@@ -67,6 +67,7 @@ module.exports = {
                     },
                     "spherical": true,
                     "distanceField": "dis",
+                    "distanceMultiplier":1/1000,
                     "query":query,
                 }},
                 { "$sort": { "dis": 1 } } 
