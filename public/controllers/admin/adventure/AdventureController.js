@@ -22,7 +22,9 @@ app.controller('AdventureController.add', ['$scope','$config','AdventureService'
         }
     }
     $scope.place.schedule = [];
-    $scope.save = function(){                        
+    $scope.save = function(){  
+        console.log($scope.place);
+        return;                      
     	$(".form-control").css('border', '1px solid #ccc');
     	$('#place_add_error').hide();
     	$("#progressWrapper").show();
@@ -47,7 +49,7 @@ app.controller('AdventureController.add', ['$scope','$config','AdventureService'
 			window.scrollTo(0, 0);
         })
     }
-    $scope.addSchedule = function(){        
+    $scope.addSchedule = function(){          
         var schedulePanel = $("#schedulePanel");        
         var elem = $compile("<div schedule value=\"place.schedule[" + $scope.scheduleComponentIndex  +"]\" on-delete=\"deleteSchedule("+ $scope.scheduleComponentIndex++ +")\"></div>")($scope);
         schedulePanel.append(elem);        
@@ -112,12 +114,13 @@ app.controller('AdventureController.edit', ['$scope','$config','AdventureService
                 window.scrollTo(0, 0);
             })
         }
+        
     }
-    $scope.addSchedule = function(){        
-        var schedulePanel = $("#schedulePanel");        
-        var elem = $compile("<div schedule value=\"place.schedule[" + $scope.scheduleComponentIndex  +"]\" on-delete=\"deleteSchedule("+ $scope.scheduleComponentIndex++ +")\"></div>")($scope);
-        schedulePanel.append(elem);        
+
+    $scope.addSchedule = function(){
+        $scope.place.schedule[$scope.scheduleComponentIndex++] = {};        
     }
     $scope.deleteSchedule = function(e){        
     }
+
 }]);  
