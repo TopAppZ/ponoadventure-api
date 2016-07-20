@@ -68,6 +68,7 @@ app.controller('AdventureController.edit', ['$scope','$config','AdventureService
             $scope.scheduleComponentIndex = $scope.place.schedule.length;
         } else {
             $scope.scheduleComponentIndex = 0;
+            $scope.place.schedule = [];
         }        
     });
     $scope.update = function(){         
