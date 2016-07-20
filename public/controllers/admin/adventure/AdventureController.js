@@ -22,9 +22,8 @@ app.controller('AdventureController.add', ['$scope','$config','AdventureService'
         }
     }
     $scope.place.schedule = [];
-    $scope.save = function(){  
-        console.log($scope.place);
-        return;                      
+    $scope.save = function(){ 
+                              
     	$(".form-control").css('border', '1px solid #ccc');
     	$('#place_add_error').hide();
     	$("#progressWrapper").show();
@@ -123,7 +122,8 @@ app.controller('AdventureController.edit', ['$scope','$config','AdventureService
     }
 
     $scope.addSchedule = function(){
-        $scope.place.schedule[$scope.scheduleComponentIndex++] = {};        
+        $scope.place.schedule[$scope.scheduleComponentIndex] = {};  
+        $scope.scheduleComponentIndex++;    
     }
     $scope.deleteSchedule = function(e){        
     }
