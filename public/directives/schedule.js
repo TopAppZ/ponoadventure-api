@@ -25,7 +25,9 @@ app.directive('schedule', ['$compile',function ($compile) {
                         var elem = $compile("<div ng-include src=\"\'" + htmlURL +"\'\"></div>")(scope);
                         el.find('#dateTemplate').html(elem);                        
                     }                    
+                    
                 }
+
             });
             scope.loadDateTemplate = function(){                                                                      
                 if(scope.value.type == 'repeat'){
@@ -36,7 +38,8 @@ app.directive('schedule', ['$compile',function ($compile) {
                     var htmlURL = "/directives/templates/multiple_date.tpl.html";
                     var elem = $compile("<div ng-include src=\"\'" + htmlURL +"\'\"></div>")(scope);
                     el.find('#dateTemplate').html(elem);                        
-                }    
+
+                }
                 
             }
         }
