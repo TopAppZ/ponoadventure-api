@@ -64,7 +64,11 @@ app.controller('AdventureController.edit', ['$scope','$config','AdventureService
     var adventure = adventureService.get({id:$state.params.id}, function() {        
         console.log(adventure);
         $scope.place = adventure;
-        $scope.scheduleComponentIndex = $scope.place.schedule.length;
+        if (typeof($scope.place.schedule) != 'undefined') {
+            $scope.scheduleComponentIndex = $scope.place.schedule.length;
+        } else {
+            $scope.scheduleComponentIndex = 0;
+        }        
     });
     $scope.update = function(){         
         $(".form-control").css('border', '1px solid #ccc');
