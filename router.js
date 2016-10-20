@@ -25,7 +25,12 @@ module.exports = function(express, app){
         .put(function(req,res){
             var userAPIController = require('./APIControllers/UserAPIController');
             userAPIController.update( req, res );
-        })    
+        })  
+    apiRouter.route('/user/:id/book/:tourID')
+        .post(function(req,res){
+            var userAPIController = require('./APIControllers/UserAPIController');
+            userAPIController.book( req, res );
+        })  
     apiRouter.route('/adventure')
         .post(function(req,res){
             var adventureAPIController = require("./APIControllers/AdventureAPIController");
