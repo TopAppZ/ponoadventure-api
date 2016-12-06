@@ -21,9 +21,8 @@ app.controller('AdventureController.add', ['$scope','$config','AdventureService'
             coordinates:[0.0,0.0]
         }
     }
-    $scope.place.schedule = [];
-    $scope.save = function(){ 
-                              
+    $scope.place.schedule = [];    
+    $scope.save = function(){                                       
     	$(".form-control").css('border', '1px solid #ccc');
     	$('#place_add_error').hide();
     	$("#progressWrapper").show();
@@ -47,19 +46,11 @@ app.controller('AdventureController.add', ['$scope','$config','AdventureService'
 			$('#place_add_error').show();
 			window.scrollTo(0, 0);
         })
-    }
-    $scope.addSchedule = function(){          
-        var schedulePanel = $("#schedulePanel");        
-        var elem = $compile("<div schedule value=\"place.schedule[" + $scope.scheduleComponentIndex  +"]\" on-delete=\"deleteSchedule("+ $scope.scheduleComponentIndex++ +")\"></div>")($scope);
-        schedulePanel.append(elem);        
-    }
-    $scope.deleteSchedule = function(e){        
-    }
+    }    
 }]);
 
 app.controller('AdventureController.edit', ['$scope','$config','AdventureService','$state', 'SharedDataService', '$compile', function($scope, $config, adventureService, $state, sharedDataService, $compile) {  
     $scope.categories = sharedDataService.categories;
-
     var adventure = adventureService.get({id:$state.params.id}, function() {        
         console.log(adventure);
         $scope.place = adventure;

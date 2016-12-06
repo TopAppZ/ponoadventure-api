@@ -4,7 +4,7 @@ var morgan = require("morgan");
 var config = require('./config');
 var mongoose = require('mongoose');
 var app = express();
-mongoose.connect(config.database, function(err){
+mongoose.connect(config.database, {auth:{authdb:"admin"}}, function(err){
     if(err){
         console.log(err);
     } else {
