@@ -2,8 +2,8 @@ var User = require('../models/user');
 var Adventure = require('../models/adventure');
 var Booking = require('../models/booking');
 var moment = require('moment');
-module.exports = {    
-    save:function(req, res){        
+module.exports = {
+    save:function(req, res){
         var user = new User({
             full_name:req.body.full_name,
             email: req.body.email,
@@ -40,53 +40,46 @@ module.exports = {
             } else {
                 res.status(400).send({ error: err });
             }
-            
+
         });
     },
     book:function(req,res){
-        Adventure.findOne({_id:req.params.tourID}, function(err,adventure){
-            var booking_date = req.body.booking_date;
-            var day = moment(booking_date).format('dddd').toLowerCase();
-            var schedule = adventure.schedule;
-            var isAvailableAtRepeat = false;
-            var isAvailableAtDate = false;
-            for (var i = 0; i < schedule.length; i++){
-                if (schedule[i].type == 'repeat') {
-                    if (schedule[i].repeatative_days.indexOf(day) > -1 && schedule[i].except.indexOf(booking_date) == -1) {
-                        isAvailableAtRepeat = true;                         
-                    } else {
-                        isAvailableAtRepeat = false;
-                    }        
-                                  
-                } else if (schedule[i].type == 'date') {
-                    if (schedule[i].dates.indexOf(booking_date) > -1) {
-                        isAvailableAtDate = true;  
-                        console.log("l i 3");                       
-                    } 
+      Adventure.findOne({_id:req.params.tourID}, function(err,adventure){
+        var booking_date = req.body.booking_date;
+        var day = moment(booking_date);
+        var schedule = adventure.schedule;
+        var isAvailable = false;
+        if (booking_date == '' || typeof booking_date == 'undefined') {
+          res.status(400).send({ "error": "Booking date missing" });
+          return;
+        }
+        for(var i = 0; i < schedule.length; i++){
+          if (day.isSame(moment(schedule[i]))) {
+            isAvailable = true;
+            break;
+          }
+        }
+        if (isAvailable) {
+          res.json({});
+        } else {
+          res.status(404).send({ "error": "This date is not available" });
+        }
 
-                }
-            }
-            var isAvailable = isAvailableAtDate || isAvailableAtRepeat;
-            if (!isAvailable) {
-                res.status(404).send({ error: "The selected date is not available" });
-            } else {
-                var booking = new Booking({
-                    full_name: req.body.full_name,
-                    email: req.body.email,
-                    contact_number: req.body.contact_number,
-                    age: req.body.age,
-                    number_of_person: req.body.number_of_person,
-                    gender: req.body.gender,
-                    can_swim: req.body.can_swim,
-                    strenious_activity_rate: req.body.strenious_activity_rate,
-                    transaction_id: req.body.transaction_id,    
-                    booking_date: req.body.booking_date,
-                    total_price: req.body.total_price,
-                    booked_by: req.params.id,
-                    place_id: req.params.tourID,
-                });
-                res.send({ error: "The selected date is available" });
-            }
-        })
+      });
+    },
+    login: function(req,res){
+      var query = User.findOne({ "email": req.body.email,  "password": req.body.password});
+      query.exec(function(err,user){
+          if(!err){
+              if (user) {
+                res.json(user);
+              } else {
+                res.status(404).send();
+              }
+          } else {
+              res.status(404).send();
+          }
+      })
     }
+
 }
