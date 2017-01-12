@@ -73,6 +73,11 @@ module.exports = function(express, app){
             var categoryAPIController = require("./APIControllers/CategoryAPIController");
             categoryAPIController.delete(req,res);
         })
+    apiRouter.route('/notification')
+        .post(function(req, res){
+            var notificationController = require("./APIControllers/NotificationAPIController");
+            notificationController.send(req,res);
+        })
     app.use('/api', apiRouter);
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

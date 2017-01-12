@@ -4,6 +4,7 @@
   "description": "REST API",
   "main": "index.js",
   "dependencies": {
+    "apn": "^2.1.2",
     "aws-sdk": "^2.3.17",
     "body-parser": "^1.15.1",
     "express": "^4.13.4",
