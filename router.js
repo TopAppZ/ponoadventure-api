@@ -7,25 +7,35 @@ module.exports = function(express, app){
         .get(function(req,res){
             res.json({version:"1.0.0"});
         });
-    
+
     apiRouter.route('/user')
         .get(function(req,res){
             var userAPIController = require('./APIControllers/UserAPIController');
-            userAPIController.list( req, res );  
+            userAPIController.list( req, res );
         })
         .post(function(req,res){
             var userAPIController = require('./APIControllers/UserAPIController');
-            userAPIController.save( req, res );        
+            userAPIController.save( req, res );
         })
     apiRouter.route('/user/:id')
         .get(function(req,res){
             var userAPIController = require('./APIControllers/UserAPIController');
-            userAPIController.get( req, res ); 
+            userAPIController.get( req, res );
         })
         .put(function(req,res){
             var userAPIController = require('./APIControllers/UserAPIController');
             userAPIController.update( req, res );
-        })    
+        })
+    apiRouter.route('/user/login')
+        .post(function(req,res){
+            var userAPIController = require('./APIControllers/UserAPIController');
+            userAPIController.login( req, res );
+        })
+    apiRouter.route('/user/:id/book/:tourID')
+        .post(function(req,res){
+            var userAPIController = require('./APIControllers/UserAPIController');
+            userAPIController.book( req, res );
+        })
     apiRouter.route('/adventure')
         .post(function(req,res){
             var adventureAPIController = require("./APIControllers/AdventureAPIController");
@@ -51,26 +61,26 @@ module.exports = function(express, app){
         })
         .post(function(req, res){
             var categoryAPIController = require("./APIControllers/CategoryAPIController");
-            categoryAPIController.save(req,res);            
+            categoryAPIController.save(req,res);
         })
-        
+
     apiRouter.route('/category/:id')
         .get(function(req,res){
             var categoryAPIController = require("./APIControllers/CategoryAPIController");
-            categoryAPIController.get(req,res);            
+            categoryAPIController.get(req,res);
         })
         .delete(function(req,res){
             var categoryAPIController = require("./APIControllers/CategoryAPIController");
-            categoryAPIController.delete(req,res);            
+            categoryAPIController.delete(req,res);
         })
     app.use('/api', apiRouter);
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    
+
     /////////////////////////////////////////////////Admin Router/////////////////////////////////////////////////////////
     var adminRouter = express.Router();
     adminRouter.route('*')
         .get(function( req, res ){
-            res.sendFile(__dirname + '/public/admin.html'); 
+            res.sendFile(__dirname + '/public/admin.html');
         });
     app.use(express.static(__dirname + '/public'));
     app.use('/admin', adminRouter);

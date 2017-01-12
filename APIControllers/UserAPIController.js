@@ -1,6 +1,9 @@
 var User = require('../models/user');
-module.exports = {    
-    save:function(req, res){        
+var Adventure = require('../models/adventure');
+var Booking = require('../models/booking');
+var moment = require('moment');
+module.exports = {
+    save:function(req, res){
         var user = new User({
             full_name:req.body.full_name,
             email: req.body.email,
@@ -37,7 +40,46 @@ module.exports = {
             } else {
                 res.status(400).send({ error: err });
             }
-            
+
         });
+    },
+    book:function(req,res){
+      Adventure.findOne({_id:req.params.tourID}, function(err,adventure){
+        var booking_date = req.body.booking_date;
+        var day = moment(booking_date);
+        var schedule = adventure.schedule;
+        var isAvailable = false;
+        if (booking_date == '' || typeof booking_date == 'undefined') {
+          res.status(400).send({ "error": "Booking date missing" });
+          return;
+        }
+        for(var i = 0; i < schedule.length; i++){
+          if (day.isSame(moment(schedule[i]))) {
+            isAvailable = true;
+            break;
+          }
+        }
+        if (isAvailable) {
+          res.json({});
+        } else {
+          res.status(404).send({ "error": "This date is not available" });
+        }
+
+      });
+    },
+    login: function(req,res){
+      var query = User.findOne({ "email": req.body.email,  "password": req.body.password});
+      query.exec(function(err,user){
+          if(!err){
+              if (user) {
+                res.json(user);
+              } else {
+                res.status(404).send();
+              }
+          } else {
+              res.status(404).send();
+          }
+      })
     }
+
 }

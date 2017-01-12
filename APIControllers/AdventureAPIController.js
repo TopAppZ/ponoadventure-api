@@ -76,7 +76,7 @@ module.exports = {
 
                     res.json(adventures);
               }
-        );
+        );        
     },
     get:function(req,res){
         Adventure.findOne({"_id":req.params.id})
