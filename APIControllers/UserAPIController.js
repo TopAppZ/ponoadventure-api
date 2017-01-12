@@ -1,7 +1,6 @@
 var User = require('../models/user');
 var Adventure = require('../models/adventure');
 var Booking = require('../models/booking');
-var moment = require('moment');
 module.exports = {
     save:function(req, res){
         var user = new User({
