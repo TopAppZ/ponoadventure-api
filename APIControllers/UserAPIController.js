@@ -6,8 +6,11 @@ module.exports = {
         var user = new User({
             full_name:req.body.full_name,
             email: req.body.email,
+            full_address:req.body.full_address,
             password:req.body.password,
-            contact_number:req.body.contact_number
+            contact_number:req.body.contact_number,
+            state:req.body.state,
+            device_id:req.body.device_id
         });
         user.save(function(err){
             if(!err){
