@@ -70,16 +70,17 @@ module.exports = {
       });
     },
     login: function(req,res){
-      var query = User.findOne({ "email": req.body.email,  "password": req.body.password});
+      var query = User.findOne(req.body);
+      console.log(req.body)
       query.exec(function(err,user){
           if(!err){
               if (user) {
                 res.json(user);
               } else {
-                res.status(404).send();
+                res.status(403).send();
               }
           } else {
-              res.status(404).send();
+              res.status(403).send();
           }
       })
     }
