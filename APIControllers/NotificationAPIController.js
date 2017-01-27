@@ -2,7 +2,7 @@ var apn = require('apn');
 var path = require('path');
 module.exports = {
     send:function(req, res){
-    	let tokens = ["34B6AAD27E5278DF41F2B8648968D00F6DEA2B51C10B4A0DA7DAE636C38FEE88"];
+    	let tokens = ["16F80029652C67EA2F6C1DE03B5D9CA153D03C112BD24336BEF18169BFCC4371"];
     	var options = {
 		  key:"key.pem",
 		  production: false,
@@ -11,7 +11,7 @@ module.exports = {
 		var apnProvider = new apn.Provider(options);
 
 		let note = new apn.Notification({
-			alert:  "Push without cert",
+			alert:  "Place 1 is within 5KM of your location",
 		});
 		note.expiry = Math.floor(Date.now() / 1000) + 3600; // Expires 1 hour from now.
 		note.badge = 3;
