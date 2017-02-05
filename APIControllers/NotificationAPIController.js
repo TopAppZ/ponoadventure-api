@@ -48,7 +48,7 @@ module.exports = {
 	      			if (placeCountforNotification != 0) {
 		      			let tokens = [device_id];
 				    	var options = {
-						  key:"key.pem",
+						  key:"cert.pem",
 						  production: false,
 						};
 		      			var apnProvider = new apn.Provider(options);
