@@ -37,11 +37,11 @@ module.exports = {
 		      				placeCountforNotification--;
 		      			} else {
 		      				//insert the place_id with time stamp into the array
-		      				User.findOneAndUpdate({_id: user._id}, {$push:{notifications:{place_id:adventures[i]._id}}}, {new: true}, function(err, doc){
+		      				/*User.findOneAndUpdate({_id: user._id}, {$push:{notifications:{place_id:adventures[i]._id}}}, {new: true}, function(err, doc){
 							    if(err){
 							        console.log("Something wrong when updating data!");
 							    }							    
-							});
+							});*/
 
 		      			}
 	      			}
