@@ -70,12 +70,18 @@ module.exports = {
       });
     },
     login: function(req,res){
-      var query = User.findOne(req.body);
+      var query = User.findOne({"email":req.body.email, "password":req.body.password});
       console.log(req.body)
       query.exec(function(err,user){
           if(!err){
               if (user) {
-                res.json(user);
+                User.findOneAndUpdate({_id: user._id}, {$set: { "device_id" : req.body.device_id }},{"new":true},function(err, doc){
+                    if(err){
+                        console.log("Something wrong when updating data!");
+                    } 
+                    res.json(doc);
+                });
+                
               } else {
                 res.status(403).send();
               }
