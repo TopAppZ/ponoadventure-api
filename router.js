@@ -78,6 +78,16 @@ module.exports = function(express, app){
             var notificationController = require("./APIControllers/NotificationAPIController");
             notificationController.send(req,res);
         })
+    apiRouter.route('/booking')
+        .get(function(req, res){
+            var bookingController = require("./APIControllers/BookingController");
+            bookingController.list(req,res);
+        })
+    apiRouter.route('/booking/:id')
+        .get(function(req, res){
+            var bookingController = require("./APIControllers/BookingController");
+            bookingController.get(req,res);
+        })
     app.use('/api', apiRouter);
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

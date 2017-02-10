@@ -11,7 +11,7 @@ var bookingSchema = new Schema({
     gender: {type:String, required: true},
     can_swim: {type:Boolean, required: true},
     strenious_activity_rate: {type:String, required: true},
-    transaction_id: {type:String, required: true},    
+    transaction_id: {type:String, required: true},
     transaction_date: {type:Date, default:Date.now()},
     booking_date: {type:Date, required: true},
     total_price: {type:Date, required: true},

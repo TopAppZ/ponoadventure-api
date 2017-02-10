@@ -1,7 +1,7 @@
 app = angular.module("app", ['ui.router','ngResource', 'chieffancypants.loadingBar','ui.bootstrap','multipleDatePicker','checklist-model']);
 app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
-    $urlRouterProvider.otherwise("/admin/home");    
+    $urlRouterProvider.otherwise("/admin/home");
     $stateProvider
         .state('home', {
           url: "/admin/home",
@@ -9,21 +9,36 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
         })
         .state('users', {
           url:"/admin/user",
-          abstract: true,          
-          templateUrl: "views/admin/users.tpl.html",          
+          abstract: true,
+          templateUrl: "views/admin/users.tpl.html",
         })
         .state('users.edit', {
           url: "/edit/:id",
-          templateUrl: "views/admin/user.edit.tpl.html", 
-          controller: "User.EditController"          
+          templateUrl: "views/admin/user.edit.tpl.html",
+          controller: "User.EditController"
         })
         .state('users.list', {
           url: "/list",
-          templateUrl: "views/admin/user.list.tpl.html", 
-          controller: "User.ListController"          
+          templateUrl: "views/admin/user.list.tpl.html",
+          controller: "User.ListController"
+        })
+        .state('users.booking', {
+          abstract: true,
+          url: "/booking",
+          templateUrl: "views/admin/booking.tpl.html",
+        })
+        .state('users.booking.list', {
+          url: "/list",
+          templateUrl: "views/admin/user.booking.tpl.html",
+          controller: "User.Booking"
+        })
+        .state('users.booking.details', {
+          url: "/details/:id",
+          templateUrl: "views/admin/user.booking.details.tpl.html",
+          controller: "User.Booking.Details"
         })
         .state('adventures', {
-          abstract: true,  
+          abstract: true,
           url: "/admin/adventure",
           templateUrl: "views/admin/adventures.tpl.html"
         })
@@ -31,7 +46,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
           url: "/list?filter&value&loc",
           templateUrl: "views/admin/adventure.list.tpl.html",
           controller: "AdventureController.list"
-          
+
         })
          .state('adventures.edit', {
           url: "/edit/:id",
@@ -42,24 +57,24 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
           url: "/add",
           templateUrl: "views/admin/adventure.add.tpl.html",
           controller: "AdventureController.add"
-        })  
+        })
         .state('category', {
-          abstract: true,  
+          abstract: true,
           url: "/admin/category",
           templateUrl: "views/admin/category.tpl.html"
         })
          .state('category.list', {
           url: "/list",
           templateUrl: "views/admin/category.list.tpl.html",
-          controller:"CategoryController.list"          
+          controller:"CategoryController.list"
         })
          .state('category.edit', {
           url: "/edit/:id",
-          templateUrl: "views/admin/category.edit.tpl.html",          
+          templateUrl: "views/admin/category.edit.tpl.html",
         })
         .state('category.add', {
           url: "/add",
-          templateUrl: "views/admin/category.add.tpl.html",     
+          templateUrl: "views/admin/category.add.tpl.html",
           controller:"CategoryController.add"
         })
 });
