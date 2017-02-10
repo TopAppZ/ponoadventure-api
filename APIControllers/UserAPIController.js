@@ -1,14 +1,16 @@
 var User = require('../models/user');
 var Adventure = require('../models/adventure');
 var Booking = require('../models/booking');
-var moment = require('moment');
 module.exports = {
     save:function(req, res){
         var user = new User({
             full_name:req.body.full_name,
             email: req.body.email,
+            full_address:req.body.full_address,
             password:req.body.password,
-            contact_number:req.body.contact_number
+            contact_number:req.body.contact_number,
+            state:req.body.state,
+            device_id:req.body.device_id
         });
         user.save(function(err){
             if(!err){
@@ -68,16 +70,23 @@ module.exports = {
       });
     },
     login: function(req,res){
-      var query = User.findOne({ "email": req.body.email,  "password": req.body.password});
+      var query = User.findOne({"email":req.body.email, "password":req.body.password});
+      console.log(req.body)
       query.exec(function(err,user){
           if(!err){
               if (user) {
-                res.json(user);
+                User.findOneAndUpdate({_id: user._id}, {$set: { "device_id" : req.body.device_id }},{"new":true},function(err, doc){
+                    if(err){
+                        console.log("Something wrong when updating data!");
+                    } 
+                    res.json(doc);
+                });
+                
               } else {
-                res.status(404).send();
+                res.status(403).send();
               }
           } else {
-              res.status(404).send();
+              res.status(403).send();
           }
       })
     }
