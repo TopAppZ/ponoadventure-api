@@ -45,7 +45,7 @@ module.exports = {
 
         });
     },
-    book:function(req,res){  
+    book:function(req,res){
       Adventure.findOne({_id:req.params.tourID}, function(err,adventure){
         var booking_date = req.body.booking_date;
         var day = moment(booking_date);
