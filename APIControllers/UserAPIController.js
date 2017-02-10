@@ -45,7 +45,7 @@ module.exports = {
 
         });
     },
-    book:function(req,res){
+    book:function(req,res){  
       Adventure.findOne({_id:req.params.tourID}, function(err,adventure){
         var booking_date = req.body.booking_date;
         var day = moment(booking_date);
@@ -78,10 +78,10 @@ module.exports = {
                 User.findOneAndUpdate({_id: user._id}, {$set: { "device_id" : req.body.device_id }},{"new":true},function(err, doc){
                     if(err){
                         console.log("Something wrong when updating data!");
-                    } 
+                    }
                     res.json(doc);
                 });
-                
+
               } else {
                 res.status(403).send();
               }
