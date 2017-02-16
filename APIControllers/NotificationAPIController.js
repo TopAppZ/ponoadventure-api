@@ -37,20 +37,20 @@ module.exports = {
 		      				placeCountforNotification--;
 		      			} else {
 		      				//insert the place_id with time stamp into the array
-		      				User.findOneAndUpdate({_id: user._id}, {$push:{notifications:{place_id:adventures[i]._id}}}, {new: true}, function(err, doc){
+		      				/*User.findOneAndUpdate({_id: user._id}, {$push:{notifications:{place_id:adventures[i]._id}}}, {new: true}, function(err, doc){
 							    if(err){
 							        console.log("Something wrong when updating data!");
-							    }
+							    }*/
 							});
 
 		      			}
 	      			}
 	      			if (placeCountforNotification != 0) {
 		      			let tokens = [device_id];
-				    	var options = {
-						  key:"key_debug.pem",
-						  production: true,
-						};
+  				    	var options = {
+    						  key:"key_debug.pem",
+    						  production: false,
+    						};
 		      			var apnProvider = new apn.Provider(options);
 		      			var alert = placeCountforNotification + " Place(s) within 5KM of your location";
 						let note = new apn.Notification({
