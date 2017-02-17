@@ -70,7 +70,7 @@ module.exports = {
 						});
 						apnProvider.shutdown();
 					} else {
-						res.status(400).json({"result":"No places near by for now"});
+						res.status(404).json({"result":"No places near by for now"});
 					}
 	      		})
 
