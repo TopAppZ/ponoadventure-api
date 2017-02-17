@@ -57,12 +57,11 @@ module.exports = {
 							alert:  alert,
 						});
 						note.expiry = Math.floor(Date.now() / 1000) + 3600; // Expires 1 hour from now.
-						note.badge = 3;
 						note.sound = "ping.aiff";
 						note.topic = "com.ai.ponoadventure";
 
 						apnProvider.send(note, tokens).then( result => {
-							console.log(result);
+							  console.log(result);
 						    console.log("sent:", result.sent.length);
 						    console.log("failed:", result.failed.length);
 						    console.log(result.failed);
@@ -70,7 +69,7 @@ module.exports = {
 						});
 						apnProvider.shutdown();
 					} else {
-						res.status(404).json({"result":"No places near by for now"});
+						res.status(404).send();
 					}
 	      		})
 
