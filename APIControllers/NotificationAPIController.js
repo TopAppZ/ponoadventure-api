@@ -48,8 +48,8 @@ module.exports = {
 	      			if (placeCountforNotification != 0) {
 		      			let tokens = [device_id];
   				    	var options = {
-    						  key:"key_debug.pem",
-    						  production: false,
+    						  key:"key.pem",
+    						  production: true,
     						};
 		      			var apnProvider = new apn.Provider(options);
 		      			var alert = placeCountforNotification + " Place(s) within 5KM of your location";
