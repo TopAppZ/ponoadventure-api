@@ -65,7 +65,7 @@ module.exports = {
 						    console.log("sent:", result.sent.length);
 						    console.log("failed:", result.failed.length);
 						    console.log(result.failed);
-						    res.json({"msg":alert,"result":result});
+						    res.json({"msg":alert,"result":result, "moment":moment().format("MMM Do YY")});
 						});
 						apnProvider.shutdown();
 					} else {
