@@ -141,7 +141,8 @@ module.exports = {
              json = JSON.parse(str);
              console.log(json)
              if (res.statusCode == 200) {
-               if (json.routes.count != 0) {
+
+               if (json.routes.length != 0) {
                  resp.json({"points" : json.routes[0].overview_polyline.points})
                } else {
                  resp.json({"points" : ""})
