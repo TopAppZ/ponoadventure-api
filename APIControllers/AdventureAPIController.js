@@ -139,7 +139,12 @@ module.exports = {
 
            res.on('end', function () {
              json = JSON.parse(str);
-             resp.json({"points" : json.routes[0].overview_polyline.points})
+             if (typeof json.routes[0].overview_polyline.points != 'udefined') {
+               resp.json({"points" : json.routes[0].overview_polyline.points})
+             } else {
+               resp.json({"points" : ""})
+             }
+
            });
 
       });
