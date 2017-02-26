@@ -1,0 +1,49 @@
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                Bookings <small>Sorted by date</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li class="active">
+                    <i class="fa fa-dashboard"></i> Bookings
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <h2>Bookings</h2>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Full name</th>
+                            <th>email</th>
+                            <th>Contact Number</th>
+                            <th>Tour Name</th>
+                            <th>Transaction Date</th>
+                            <th>Event Date</th>
+                            <th>Options</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="booking in bookings">
+                            <td>{{booking.full_name}}</td>
+                            <td>{{booking.email}}</td>
+                            <td>{{booking.contact_number}}</td>
+                            <td>{{booking.place_id.name}}</td>
+                            <td>{{booking.transaction_date | date:'MMM dd yyyy'}}</td>
+                            <td>{{booking.booking_date | date:'MMM dd yyyy'}}</td>
+                            <td align="center">
+                                <button ng-click="bookingDetails(booking._id)" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-pencil"></span></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+</div>

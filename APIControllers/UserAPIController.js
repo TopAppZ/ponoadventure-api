@@ -1,6 +1,7 @@
 var User = require('../models/user');
 var Adventure = require('../models/adventure');
 var Booking = require('../models/booking');
+var moment = require('moment');
 module.exports = {
     save:function(req, res){
         var user = new User({
@@ -62,8 +63,18 @@ module.exports = {
           }
         }
         if (isAvailable) {
-          res.json({});
-        } else {
+          req.body.booked_by = req.params.id;
+          req.body.place_id = req.params.tourID;
+          var booking = new Booking(req.body);
+          booking.save(function(err){
+              if(!err){
+                  res.json(booking);
+              } else {
+                  res.status(400).send({ error: err });
+              }
+          })
+        }
+        else {
           res.status(404).send({ "error": "This date is not available" });
         }
 
@@ -81,7 +92,7 @@ module.exports = {
                     }
                     res.json(doc);
                 });
-
+                //I dont know what is going on
               } else {
                 res.status(403).send();
               }
