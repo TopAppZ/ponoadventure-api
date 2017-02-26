@@ -1,11 +1,13 @@
 var multer  = require('multer')
 var upload = multer({ dest: 'uploads/' })
+var auth = require('basic-auth')
 module.exports = function(express, app){
     ///////////////////////////////////////////////////////API router/////////////////////////////////////////////////////
     var apiRouter = express.Router();
     apiRouter.route('/version')
         .get(function(req,res){
             res.json({version:"1.0.0"});
+            req.session.c = "hello";
         });
 
     apiRouter.route('/user')
@@ -100,9 +102,25 @@ module.exports = function(express, app){
     var adminRouter = express.Router();
     adminRouter.route('*')
         .get(function( req, res ){
-            res.sendFile(__dirname + '/public/admin.html');
+          var user = auth(req);
+          if(user && (user.name == "admin" && user.pass == "harry123")){
+              res.sendFile(__dirname + '/public/admin.html');
+          } else {
+             res.statusCode = 401;
+             res.setHeader('WWW-Authenticate', 'Basic realm=Authorization Required 1');
+             res.end('Unauthorized');
+          }
         });
     app.use(express.static(__dirname + '/public'));
     app.use('/admin', adminRouter);
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    var logoutRouter = express.Router();
+    logoutRouter.route('*')
+      .get(function(req,res){
+        res.statusCode = 401;
+        res.setHeader('WWW-Authenticate', 'Basic realm=Authorization Required 1');
+        res.end('Unauthorized');
+        res.redirect("/admin/home")
+      })
+    app.use('/logout', logoutRouter);
 }
