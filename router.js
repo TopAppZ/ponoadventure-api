@@ -28,6 +28,11 @@ module.exports = function(express, app){
             var userAPIController = require('./APIControllers/UserAPIController');
             userAPIController.update( req, res );
         })
+    apiRouter.route('/user/getByEmail')
+        .post(function(req,res){
+            var userAPIController = require('./APIControllers/UserAPIController');
+            userAPIController.getByEmail( req, res );
+        })
     apiRouter.route('/user/login')
         .post(function(req,res){
             var userAPIController = require('./APIControllers/UserAPIController');
