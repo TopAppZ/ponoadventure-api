@@ -100,6 +100,21 @@ module.exports = {
               res.status(403).send();
           }
       })
+    },
+    getByEmail: function(req,res){
+        var query = User.findOne({"email":req.body.email});
+        query.exec(function(err,user){
+            if(!err){
+                if (user) {
+                  res.json(user);
+                  //I dont know what is going on
+                } else {
+                  res.status(404).send();
+                }
+            } else {
+                res.status(404).send();
+            }
+        })
     }
 
 }
